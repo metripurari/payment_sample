@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroupFileAddon01">Create Merchants</span>
+    </div>
+    <div class="custom-file">
+      <input id="myForm" name="file" type="file" class="custom-file-input" id="inputGroupFile01"
+        aria-describedby="inputGroupFileAddon01" (change)="postMethod($event.target.files)">
+      <label class="custom-file-label" for="inputGroupFile01">Upload SCV file</label>
+    </div>
+  </div>
+  <table class="table table-hover table-striped">
+    <thead class="thead-dark">
+      <td>Name</td>
+      <td>Email</td>
+      <td>Status</td>
+      <td>Expired</td>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let merchant of merchantService.merchants">
+        <td>{{merchant.name}}</td>
+        <td>{{merchant.email}}</td>
+        <td>
+          <div *ngIf="merchant.status; else authenticate">
+            Active
+          </div>
+
+          <ng-template #authenticate>
+            Not Active
+          </ng-template>
+        </td>
+        <td>
+          <div *ngIf="!merchant.expired; else notShow">
+            <a class="btn btn-warning" [routerLink]="['/merchants', merchant.id]">
+              Show</a
+            >
+          </div>
+
+          <ng-template #notShow>
+            <a class="btn btn-danger" (click)="renewToken(merchant)">Authenticate</a>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+

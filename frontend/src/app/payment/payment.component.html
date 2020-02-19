@@ -1,0 +1,27 @@
+
+
+<div class="container">
+
+  <form [formGroup]="paymentForm" (ngSubmit)="makePayment()" novalidate>
+    <div class="form-group" formGroupName="transaction_detail_attributes" novalidate>
+      <label for="exampleFormControlSelect1">Card No</label>
+      <input class="form-control" id="exampleFormControlSelect1" formControlName="card_no" />
+      <label for="exampleFormControlSelect2">Card Owner</label>
+      <input class="form-control" id="exampleFormControlSelect2" formControlName="card_owner" />
+      <label for="exampleFormControlSelect3">Expiry</label>
+      <input class="form-control" id="exampleFormControlSelect3" formControlName="expiry" />
+    </div>
+    <div class="form-group" novalidate>
+      <label for="exampleFormControlSelect4">Amount</label>
+      <input class="form-control" id="exampleFormControlSelect3"formControlName="amount" />
+
+    </div>
+
+    <div class="form-group">
+      <button type="submit"  class="btn btn-primary" [disabled]="paymentForm.pristine">Pay</button>
+      <button  class="btn btn-danger" type="reset" (click)="revert()" [disabled]="paymentForm.pristine">
+        Revert
+      </button>
+    </div>
+  </form>
+</div>

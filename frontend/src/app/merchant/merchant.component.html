@@ -1,0 +1,28 @@
+
+<div *ngIf="!loading" class="container">
+
+  <div class="card">
+     <div class="card-header">
+       Merchant Info
+     </div>
+    <div class="card-body">
+      <h5 class="card-title">{{merchantService.current_merchant.name}}</h5>
+      <p class="card-text"></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{merchantService.current_merchant.email}}</li>
+    </ul>
+    <div *ngIf="!this.merchantService.current_merchant.active" class="card-body">
+      <a  class="btn btn-primary" [routerLink]="['/merchants', merchantService.current_merchant.id, 'transactions']">
+              MakePayment
+            </a>
+            <a  class="btn btn-primary" [routerLink]="['/merchants', merchantService.current_merchant.id, 'transactions-list']">
+              List Payments
+            </a>
+
+    </div>
+  </div>
+
+  <app-transation-list *ngIf="this.merchantService.current_merchant.show_transactions"></app-transation-list>
+
+</div>
